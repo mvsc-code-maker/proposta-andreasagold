@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial — Andrea S.A. Gold</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D48B;
+    --gold-dark: #8B6914;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark-2: #1A1A1A;
+    --dark-3: #222222;
+    --white: #F9F6EF;
+    --white-dim: rgba(249,246,239,0.7);
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'Montserrat', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes lineGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .fade-up { animation: fadeUp 0.9s ease both; }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.30s; }
+  .delay-3 { animation-delay: 0.45s; }
+  .delay-4 { animation-delay: 0.60s; }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,168,76,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 30% at 50% 100%, rgba(201,168,76,0.07) 0%, transparent 60%);
+  }
+  .cover-tag {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .cover-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 8vw, 90px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    animation: fadeUp 0.9s ease 0.1s both;
+  }
+  .cover-title em {
+    font-style: italic;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold), var(--gold-light), var(--gold-dark));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  .cover-sub {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white-dim);
+    margin-bottom: 48px;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+  .cover-divider {
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 48px;
+    animation: fadeUp 0.9s ease 0.25s both;
+  }
+  .cover-info {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.9s ease 0.35s both;
+  }
+  .cover-info-item {
+    text-align: center;
+  }
+  .cover-info-item span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .cover-info-item p {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--white-dim);
+  }
+
+  /* SECTION BASE */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+  section + section {
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  .section-body {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--white-dim);
+  }
+  .section-body p + p { margin-top: 16px; }
+  .section-body strong { color: var(--white); font-weight: 500; }
+
+  /* DIAGNÓSTICO */
+  .diagnosis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+  }
+  .diagnosis-card {
+    background: var(--dark-2);
+    padding: 32px 28px;
+  }
+  .diagnosis-card.highlight {
+    background: linear-gradient(135deg, #1C1608, #1A1500);
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .diagnosis-card .icon {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .diagnosis-card h4 {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+  .diagnosis-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--white-dim);
+  }
+
+  /* SOLUÇÃO */
+  .solution-list {
+    margin-top: 40px;
+    counter-reset: sol;
+  }
+  .solution-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    align-items: start;
+  }
+  .solution-item:first-child { border-top: 1px solid rgba(201,168,76,0.08); }
+  .sol-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.3);
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .sol-content h4 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--gold-light);
+  }
+  .sol-content p {
+    font-size: 13px;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+
+  /* INVESTIMENTO */
+  .packages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+  }
+  .package {
+    background: var(--dark-2);
+    padding: 40px 32px;
+    position: relative;
+  }
+  .package.featured {
+    background: linear-gradient(160deg, #1C1608 0%, #111100 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+  .package-badge {
+    position: absolute;
+    top: -1px; right: 28px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 14px;
+  }
+  .package-name {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 4px;
+  }
+  .package-tagline {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .package-price {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .package-price .value {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .package-price .value sup {
+    font-size: 20px;
+    vertical-align: super;
+  }
+  .package-price .period {
+    font-size: 11px;
+    color: var(--white-dim);
+    letter-spacing: 1px;
+    margin-top: 6px;
+  }
+  .package-items {
+    list-style: none;
+  }
+  .package-items li {
+    font-size: 13px;
+    padding: 8px 0;
+    color: var(--white-dim);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .package-items li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .package-items li strong { color: var(--white); }
+
+  /* PRAZO */
+  .timeline {
+    margin-top: 40px;
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 36px 32px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -25px; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--dark-2);
+    border: 2px solid var(--gold);
+  }
+  .timeline-item .week {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .timeline-item h4 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .timeline-item p {
+    font-size: 13px;
+    color: var(--white-dim);
+    line-height: 1.7;
+  }
+
+  /* GARANTIA */
+  .guarantees {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 40px;
+  }
+  .guarantee-card {
+    background: var(--dark-2);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .guarantee-card .g-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .guarantee-card h4 {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--gold-light);
+  }
+  .guarantee-card p {
+    font-size: 12px;
+    color: var(--white-dim);
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #141005, #0E0D00);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    text-align: center;
+    padding: 100px 40px;
+  }
+  .cta-section .section-title {
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+  .cta-section .section-body {
+    max-width: 500px;
+    margin: 0 auto 48px;
+    font-size: 15px;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 18px 40px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 18px 40px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  /* RODAPÉ */
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-top: 1px solid rgba(201,168,76,0.08);
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .footer-meta {
+    font-size: 11px;
+    color: rgba(249,246,239,0.3);
+    letter-spacing: 1px;
+    text-align: right;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(201,168,76,0.02));
+    border-left: 2px solid var(--gold);
+    padding: 24px 28px;
+    margin-top: 32px;
+  }
+  .highlight-box p {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .diagnosis-grid, .packages, .guarantees { grid-template-columns: 1fr; }
+    section { padding: 60px 24px; }
+    .cover { padding: 80px 24px; }
+    .cover-info { gap: 32px; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-meta { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+  <p class="cover-tag">Proposta Comercial Exclusiva · 2025</p>
+  <h1 class="cover-title">
+    Presença Digital<br>à altura do seu <em>ouro</em>
+  </h1>
+  <p class="cover-sub">Criação de Site & Landing Page para Andrea S.A. Gold</p>
+  <div class="cover-divider"></div>
+  <div class="cover-info">
+    <div class="cover-info-item">
+      <span>Elaborado por</span>
+      <p>[Seu Nome / Agência]</p>
+    </div>
+    <div class="cover-info-item">
+      <span>Destinatário</span>
+      <p>Andrea S.A. Gold</p>
+    </div>
+    <div class="cover-info-item">
+      <span>Data</span>
+      <p>Março de 2025</p>
+    </div>
+    <div class="cover-info-item">
+      <span>Validade</span>
+      <p>30 dias</p>
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO -->
+<section>
+  <p class="section-label fade-up">01 — Cenário Atual</p>
+  <h2 class="section-title fade-up delay-1">O que está <em>faltando</em><br>para você vender mais?</h2>
+  <div class="section-body fade-up delay-2">
+    <p>A <strong>Andrea S.A. Gold</strong> já possui produtos excepcionais — joias em Ouro 18K750, prata e pedras preciosas — e uma presença ativa no Instagram. Mas sem um site profissional, oportunidades valiosas de venda ficam pelo caminho todos os dias.</p>
+  </div>
+
+  <div class="diagnosis-grid fade-up delay-3">
+    <div class="diagnosis-card">
+      <div class="icon">📱</div>
+      <h4>Dependência do Instagram</h4>
+      <p>Sem um canal próprio, sua visibilidade depende 100% de algoritmos que podem mudar a qualquer momento.</p>
+    </div>
+    <div class="diagnosis-card">
+      <div class="icon">🔍</div>
+      <h4>Invisível no Google</h4>
+      <p>Quem busca "joia em ouro 18k Guarulhos" ou "aliança personalizada SP" não encontra a Andrea S.A. Gold.</p>
+    </div>
+    <div class="diagnosis-card">
+      <div class="icon">💬</div>
+      <h4>Atendimento centralizado</h4>
+      <p>Sem formulários e catálogos online, cada dúvida exige uma mensagem manual — limitando a escala do negócio.</p>
+    </div>
+    <div class="diagnosis-card highlight">
+      <div class="icon">✨</div>
+      <h4>Potencial não explorado</h4>
+      <p>Um portfólio tão refinado merece um palco à altura: profissional, elegante e que converta visitantes em clientes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section>
+  <p class="section-label fade-up">02 — A Solução</p>
+  <h2 class="section-title fade-up delay-1">Um site que <em>vende</em><br>enquanto você trabalha</h2>
+  <div class="section-body fade-up delay-2">
+    <p>Desenvolverei um site exclusivo que une a sofisticação da sua marca com a eficiência de um vendedor digital disponível 24 horas por dia.</p>
+  </div>
+
+  <div class="solution-list fade-up delay-3">
+    <div class="solution-item">
+      <div class="sol-num">01</div>
+      <div class="sol-content">
+        <h4>Design Luxuoso & Personalizado</h4>
+        <p>Visual refinado e alinhado à identidade da Andrea S.A. Gold — cores, tipografia e layout que transmitem sofisticação e confiança desde o primeiro clique.</p>
+      </div>
+    </div>
+    <div class="solution-item">
+      <div class="sol-num">02</div>
+      <div class="sol-content">
+        <h4>Catálogo de Produtos com Foco em Conversão</h4>
+        <p>Exibição elegante das joias com fotos em destaque, descrições persuasivas e botão de contato direto no WhatsApp para fechar vendas rapidamente.</p>
+      </div>
+    </div>
+    <div class="solution-item">
+      <div class="sol-num">03</div>
+      <div class="sol-content">
+        <h4>SEO Local — Apareça no Google</h4>
+        <p>Otimização para buscas como "joalheria em Guarulhos", "aliança ouro 18k SP", atraindo novos clientes que ainda não conhecem sua loja.</p>
+      </div>
+    </div>
+    <div class="solution-item">
+      <div class="sol-num">04</div>
+      <div class="sol-content">
+        <h4>Seção de Serviços Completa</h4>
+        <p>Destaque para todos os serviços: troca de baterias, conserto, polimento, rodio, gravações e encomendas — gerando mais agendamentos e consultas.</p>
+      </div>
+    </div>
+    <div class="solution-item">
+      <div class="sol-num">05</div>
+      <div class="sol-content">
+        <h4>Totalmente Responsivo & Rápido</h4>
+        <p>Perfeito em celular, tablet e computador. Velocidade de carregamento otimizada para não perder nenhuma visita.</p>
+      </div>
+    </div>
+    <div class="solution-item">
+      <div class="sol-num">06</div>
+      <div class="sol-content">
+        <h4>Integração com Instagram & WhatsApp</h4>
+        <p>Seus posts do Instagram exibidos no site e botão flutuante de WhatsApp para contato imediato em qualquer página.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section>
+  <p class="section-label fade-up">03 — Investimento</p>
+  <h2 class="section-title fade-up delay-1">Escolha o plano <em>ideal</em><br>para seu negócio</h2>
+  <div class="section-body fade-up delay-2">
+    <p>Dois caminhos para levar a Andrea S.A. Gold para o digital com elegância e resultado.</p>
+  </div>
+
+  <div class="packages fade-up delay-3">
+    <!-- PLANO ESSENCIAL -->
+    <div class="package">
+      <p class="package-name">Essencial</p>
+      <p class="package-tagline">Landing Page</p>
+      <div class="package-price">
+        <div class="value"><sup>R$</sup> 1.490</div>
+        <p class="period">Pagamento único · Entrega em 10 dias</p>
+      </div>
+      <ul class="package-items">
+        <li>Landing page de <strong>1 página completa</strong></li>
+        <li>Design exclusivo para a marca</li>
+        <li>Seções: hero, sobre, serviços, joias em destaque, contato</li>
+        <li>Botão WhatsApp flutuante</li>
+        <li>Formulário de contato</li>
+        <li>SEO básico no Google</li>
+        <li>Responsivo para celular</li>
+        <li><strong>1 rodada de revisões</strong></li>
+        <li>Treinamento para uso</li>
+      </ul>
+    </div>
+
+    <!-- PLANO PREMIUM -->
+    <div class="package featured">
+      <div class="package-badge">Recomendado</div>
+      <p class="package-name">Premium</p>
+      <p class="package-tagline">Site Completo</p>
+      <div class="package-price">
+        <div class="value"><sup>R$</sup> 2.990</div>
+        <p class="period">Pagamento único · Entrega em 21 dias</p>
+      </div>
+      <ul class="package-items">
+        <li>Site com <strong>até 6 páginas</strong> (Home, Sobre, Joias, Serviços, Galeria, Contato)</li>
+        <li>Design luxuoso exclusivo</li>
+        <li>Catálogo de produtos com categorias</li>
+        <li>Galeria de fotos profissional</li>
+        <li>Página de Serviços detalhada</li>
+        <li>Blog / Novidades (opcional)</li>
+        <li>SEO avançado + Google Meu Negócio</li>
+        <li>Integração feed do Instagram</li>
+        <li>WhatsApp + mapa integrado</li>
+        <li><strong>3 rodadas de revisões</strong></li>
+        <li>Suporte por <strong>60 dias</strong></li>
+        <li>Treinamento completo</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight-box fade-up">
+    <p>"Investimento que se paga com a primeira venda originada pelo site — e depois trabalha por você todos os dias."</p>
+  </div>
+</section>
+
+<!-- PRAZO -->
+<section>
+  <p class="section-label fade-up">04 — Cronograma</p>
+  <h2 class="section-title fade-up delay-1">Do briefing ao <em>lançamento</em></h2>
+
+  <div class="timeline fade-up delay-2">
+    <div class="timeline-item">
+      <p class="week">Semana 1</p>
+      <h4>Briefing & Conceito</h4>
+      <p>Reunião para entender a fundo a marca, público-alvo, produtos prioritários e objetivos. Definição do conceito visual e arquitetura do site.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="week">Semana 2</p>
+      <h4>Design & Prototipagem</h4>
+      <p>Criação do layout visual com identidade refinada. Apresentação do protótipo para aprovação antes da programação.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="week">Semana 3</p>
+      <h4>Desenvolvimento & Conteúdo</h4>
+      <p>Programação do site com todos os recursos, inserção de textos e fotos, configuração de WhatsApp e formulários.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="week">Semana 4</p>
+      <h4>Revisão & Lançamento</h4>
+      <p>Ajustes finais conforme feedback, testes em todos os dispositivos, configuração de SEO e publicação no ar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIAS -->
+<section>
+  <p class="section-label fade-up">05 — Garantias</p>
+  <h2 class="section-title fade-up delay-1">Você investe <em>com segurança</em></h2>
+
+  <div class="guarantees fade-up delay-2">
+    <div class="guarantee-card">
+      <div class="g-icon">🔒</div>
+      <h4>Satisfação Garantida</h4>
+      <p>Aprovação etapa por etapa. Só avançamos quando você estiver satisfeito com o resultado.</p>
+    </div>
+    <div class="guarantee-card">
+      <div class="g-icon">📞</div>
+      <h4>Suporte Incluído</h4>
+      <p>Até 60 dias de suporte pós-entrega para ajustes e dúvidas sem custo adicional.</p>
+    </div>
+    <div class="guarantee-card">
+      <div class="g-icon">🎯</div>
+      <h4>Foco em Resultado</h4>
+      <p>O site é construído para converter visitantes em clientes — não apenas para ser bonito.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <p class="section-label" style="text-align:center; margin-bottom:16px;">Próximo Passo</p>
+  <h2 class="section-title" style="margin:0 auto 16px;">
+    Pronto para o seu<br>site <em>no ar</em>?
+  </h2>
+  <div class="section-body">
+    <p>Entre em contato hoje e garanta as condições desta proposta. Vagas limitadas para garantir atenção dedicada a cada projeto.</p>
+  </div>
+  <div class="cta-buttons">
+    <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C+vi+a+proposta+e+quero+saber+mais+sobre+o+site+para+a+Andrea+S.A.+Gold" class="btn-primary">
+      💬 Falar pelo WhatsApp
+    </a>
+    <a href="mailto:seuemail@email.com" class="btn-secondary">
+      ✉ Enviar E-mail
+    </a>
+  </div>
+</div>
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="footer-logo">Proposta · Andrea S.A. Gold</div>
+  <div class="footer-meta">
+    <p>Válida até [data + 30 dias]</p>
+    <p>Elaborada com exclusividade</p>
+  </div>
+</footer>
+
+</body>
+</html>
